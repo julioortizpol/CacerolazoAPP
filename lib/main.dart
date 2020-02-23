@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Sound Activation',
         child: Icon(
-          Icons.add,
+          Icons.play_arrow,
           size: 50,
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
