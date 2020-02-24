@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,9 +37,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _soundActivation() {
-    final player = AudioCache();
-    player.play('cacerolasound.mp3');
+  bool _stop = false;
+  AudioPlayer cacerolaSound;
+  final player = AudioCache();
+  void _soundControl() async {
+    if (_stop) {
+      var state = await cacerolaSound?.stop();
+      print(state);
+    } else {
+      cacerolaSound = await player.play('cacerolasound.mp3');
+    }
+    print(_stop);
+    _stop = !_stop;
   }
 
   @override
@@ -66,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: _soundActivation,
+        onPressed: _soundControl,
         tooltip: 'Sound Activation',
         child: Icon(
           Icons.play_arrow,
