@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       var state = await cacerolaSound?.stop();
       print(state);
     } else {
-      cacerolaSound = await player.play('cacerolasound.mp3');
+      cacerolaSound = await player.loop('cacerolasound.mp3');
     }
     print(_stop);
     _stop = !_stop;
@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.red,
+        shape: CircularNotchedRectangle(),
         child: Container(
           height: 50,
         ),
